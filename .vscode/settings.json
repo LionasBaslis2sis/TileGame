@@ -1,0 +1,14 @@
+{
+    "editor.insertSpaces": false,
+    "files.associations": {
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "fstream": "cpp",
+        "new": "cpp",
+        "*.tcc": "cpp",
+        "memory": "cpp",
+        "future": "cpp",
+        "functional": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
