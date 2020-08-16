@@ -5,11 +5,8 @@ Game::~Game() {
 	SDL_DestroyRenderer(renderer);
 }
 
-Game::Game(): window(nullptr), renderer(nullptr), running(false) {
-
-}
-
 Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
+	// setup SDL_Window & SDL_Renderer
 	window = SDL_CreateWindow(title, x, y, w, h, SDL_WINDOW_OPENGL);
 	if(!window) {
 		SDL_Log("Failed to create SDL_Window, error: %s", SDL_GetError());
@@ -19,9 +16,10 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	if(!renderer) {
 		SDL_Log("Failed to create SDL_Renderer, error: %s", SDL_GetError());
 	}
+	// call init functions
 	Assets::get().init(renderer);
-
-	player_dest = {0, 0, 64, 64};
+	player = Sprite(Assets::get().player);
+	player.setSize(64, 64);
 }
 
 void Game::run(float dt) noexcept {
@@ -38,8 +36,8 @@ void Game::update(float dt) noexcept {
 	}
 }
 
-void Game::draw() noexcept {
+void Game::draw() const noexcept {
 	SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, Assets::get().player,NULL, &player_dest);
+	player.draw(renderer);
     SDL_RenderPresent(renderer);
 }

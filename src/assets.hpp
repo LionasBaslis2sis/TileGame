@@ -7,7 +7,8 @@ class Assets {
 private:
 
 	~Assets();
-	constexpr Assets() noexcept;
+	constexpr Assets() noexcept :
+	player(nullptr) { }
 
 public:
 
