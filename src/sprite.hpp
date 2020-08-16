@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include "vec2.hpp"
 
 class Sprite {
 
@@ -37,8 +38,26 @@ public:
 		this->h=  h;
 	}
 
+	constexpr void setPosition(const vec2i& position) noexcept {
+		sprite_rect.x = position.x;
+		sprite_rect.y = position.y;
+		this->x = position.x;
+		this->y = position.y;
+	}
+
+	constexpr void setSize(const vec2i& size) noexcept {
+		sprite_rect.w = size.x;
+		sprite_rect.h = size.y;
+		this->w = size.x;
+		this->h=  size.y;
+	}
+
 	constexpr void setTextureRect(int x, int y, int w, int h) noexcept {
 		texture_rect = {x, y, w, h};
+	}
+
+	constexpr void setTexture(SDL_Texture* texture) noexcept {
+		this->texture = texture;
 	}
 
 public:

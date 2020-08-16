@@ -5,14 +5,14 @@
 class Assets {
 
 private:
-
-	~Assets();
 	constexpr Assets() noexcept :
 	player(nullptr) { }
 
 public:
 
-	void init(SDL_Renderer* renderer) noexcept;
+	~Assets();
+	void cleanup() noexcept;
+	void init(SDL_Renderer *renderer) noexcept;
 	static Assets& get() noexcept;
 
 	Assets(Assets const&) = delete;
@@ -20,6 +20,6 @@ public:
 
 public:
 
-	SDL_Texture* player;
+	SDL_Texture *player, *grass_tile;
 
 };
