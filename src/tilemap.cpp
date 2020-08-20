@@ -15,8 +15,8 @@ Tilemap::Tilemap(Uint32 width, Uint32 height, int ID) noexcept : chunks(width * 
 	}
 }
 
-void Tilemap::draw(SDL_Renderer *renderer) const noexcept {
-	for(auto& c : chunks) c.draw(renderer);
+void Tilemap::draw(SDL_Renderer *renderer, const Transform& transform) const noexcept {
+	for(auto& c : chunks) c.draw(renderer, transform);
 }
 
 void Tilemap::setTile(Uint32 x, Uint32 y, int ID) {

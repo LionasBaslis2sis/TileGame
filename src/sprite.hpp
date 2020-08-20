@@ -3,6 +3,8 @@
 #include <SDL2/SDL.h>
 #include <glm/vec2.hpp>
 
+#include "transform.hpp"
+
 class Sprite {
 
 public:
@@ -14,7 +16,7 @@ public:
 
 	Sprite(SDL_Texture *texture) noexcept;
 
-	void draw(SDL_Renderer *renderer) const noexcept;
+	void draw(SDL_Renderer *renderer, const Transform& transform) const noexcept;
 
 	constexpr void setRect(int x, int y, int w, int h) noexcept {
 		sprite_rect = {x, y, w, h};
@@ -30,6 +32,16 @@ public:
 	constexpr void setPosition(const glm::ivec2& position) noexcept {
 		sprite_rect.x = position.x; this->x = position.x;
 		sprite_rect.y = position.y; this->y = position.y;
+	}
+
+	constexpr void move(int x, int y) noexcept {
+		sprite_rect.x += x; this->x += x;
+		sprite_rect.y += y; this->y += y;
+	}
+
+	constexpr void move(const glm::ivec2& position) noexcept {
+		sprite_rect.x += position.x; this->x += position.x;
+		sprite_rect.y += position.y; this->y += position.y;
 	}
 
 	constexpr void setSize(int w, int h) noexcept {

@@ -4,6 +4,7 @@
 
 #include "util.hpp"
 #include "assets.hpp"
+#include "camera.hpp"
 #include "tilemap.hpp"
 
 class Game {
@@ -25,6 +26,6 @@ public:
 	bool running;
 
 	Sprite player;
+	Camera camera;
 	Tilemap map;
-
 };

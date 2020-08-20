@@ -6,6 +6,11 @@ Sprite::Sprite(SDL_Texture *texture) noexcept : texture(texture), angle(0), orig
 	texture_rect = {0, 0, w, h};
 }
 
-void Sprite::draw(SDL_Renderer *renderer) const noexcept {
-	SDL_RenderCopyEx(renderer, texture, &texture_rect, &sprite_rect, angle, &origin, flags);
+void Sprite::draw(SDL_Renderer *renderer, const Transform& transform) const noexcept {
+	SDL_Rect draw_rect;
+	draw_rect.x = sprite_rect.x + transform.translation.x;
+	draw_rect.x = sprite_rect.x + transform.translation.x;
+	draw_rect.w = sprite_rect.w;
+	draw_rect.h = sprite_rect.h;
+	SDL_RenderCopyEx(renderer, texture, &texture_rect, &draw_rect, angle, &origin, flags);
 }

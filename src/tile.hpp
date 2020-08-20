@@ -9,7 +9,7 @@ public:
 
 	Tile(int ID) noexcept;
 
-	void draw(SDL_Renderer* renderer) const noexcept;
+	void draw(SDL_Renderer* renderer, const Transform& transform) const noexcept;
 
 	void setID(int ID) noexcept;
 
