@@ -1,4 +1,4 @@
-INCS = -I "C:\libs\SDL2\include" -L "C:\libs\SDL2\lib\x64"
+INCS = -I "C:\libs\SDL2\include" -L "C:\libs\SDL2\lib\x64" -I "C:\libs\glm"
 
 LIBS = -lm -lSDL2_image -lSDL2main -lSDL2
 

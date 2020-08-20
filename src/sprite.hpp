@@ -1,8 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include "vec2.hpp"
-#include "mat3.hpp"
+#include <glm/vec2.hpp>
 
 class Sprite {
 
@@ -39,14 +38,14 @@ public:
 		this->h=  h;
 	}
 
-	constexpr void setPosition(const vec2i& position) noexcept {
+	constexpr void setPosition(const glm::ivec2& position) noexcept {
 		sprite_rect.x = position.x;
 		sprite_rect.y = position.y;
 		this->x = position.x;
 		this->y = position.y;
 	}
 
-	constexpr void setSize(const vec2i& size) noexcept {
+	constexpr void setSize(const glm::ivec2& size) noexcept {
 		sprite_rect.w = size.x;
 		sprite_rect.h = size.y;
 		this->w = size.x;

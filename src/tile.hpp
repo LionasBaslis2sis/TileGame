@@ -17,7 +17,7 @@ public:
 		sprite.setPosition(x, y);
 	}
 
-	constexpr void setPosition(const vec2i& position) noexcept {
+	constexpr void setPosition(const glm::ivec2& position) noexcept {
 		sprite.setPosition(position);
 	}
 
