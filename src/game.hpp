@@ -4,8 +4,7 @@
 
 #include "util.hpp"
 #include "assets.hpp"
-#include "sprite.hpp"
-#include "chunk.hpp"
+#include "tilemap.hpp"
 
 class Game {
 
@@ -26,6 +25,6 @@ public:
 	bool running;
 
 	Sprite player;
-	Chunk chunk;
+	Tilemap map;
 
 };

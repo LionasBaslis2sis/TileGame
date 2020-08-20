@@ -1,9 +1,9 @@
 #include "game.hpp"
 
 Game::~Game() {
+	Assets::get().cleanup();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
-	Assets::get().cleanup();
 	SDL_Log("Game destructed\n");
 }
 
@@ -29,7 +29,7 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	player.setSize(64, 64);
 	player.setPosition(128, 128);
 
-	chunk = Chunk(0);
+	map = Tilemap(2, 2, 0);
 }
 
 void Game::run(float dt) noexcept {
@@ -48,7 +48,7 @@ void Game::update(float dt) noexcept {
 
 void Game::draw() const noexcept {
 	SDL_RenderClear(renderer);
-	chunk.draw(renderer);
+	map.draw(renderer);
 	player.draw(renderer);
     SDL_RenderPresent(renderer);
 }

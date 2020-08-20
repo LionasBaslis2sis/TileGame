@@ -9,16 +9,23 @@ Chunk::Chunk() noexcept : render(false) {
 }
 
 Chunk::Chunk(int ID) noexcept : tiles(CHUNK_SIZE * CHUNK_SIZE, ID), render(true) {
-	for(Uint32 i = 0; i < CHUNK_SIZE * CHUNK_SIZE; i++) {
-		tiles[i].setPosition(Tile::size * indexToCoord(i));
-	}
+	setPosition(0, 0);
+	for(auto& t : tiles) t.setID(ID);
+}
+
+Chunk::Chunk(int x, int y, int ID) noexcept : tiles(CHUNK_SIZE * CHUNK_SIZE, ID), render(true) {
+	setPosition(x, y);
+	for(auto& t : tiles) t.setID(ID);
+}
+
+Chunk::Chunk(glm::ivec2& position, int ID) noexcept : tiles(CHUNK_SIZE * CHUNK_SIZE, ID), render(true) {
+	setPosition(position);
+	for(auto& t : tiles) t.setID(ID);
 }
 
 void Chunk::draw(SDL_Renderer *renderer) const noexcept {
 	if(!render) return;
-	for(auto& t : tiles) {
-		t.draw(renderer);
-	}
+	for(auto& t : tiles) t.draw(renderer);
 }
 
 Tile& Chunk::getTile(int x, int y) {

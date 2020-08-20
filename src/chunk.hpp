@@ -14,7 +14,8 @@ public:
 	~Chunk();
 	Chunk() noexcept;
 	Chunk(int ID) noexcept;
-
+	Chunk(int x, int y, int ID) noexcept;
+	Chunk(glm::ivec2& position, int ID) noexcept;
 	void draw(SDL_Renderer *renderer) const noexcept;
 
 	Tile& getTile(int x, int y);
@@ -26,11 +27,9 @@ public:
 	constexpr int coordToIndex(int x, int y) const noexcept { 
 		return x + y * CHUNK_SIZE; 
 	}
-
 	constexpr int coordToIndex(const glm::ivec2& position) const noexcept { 
 		return position.x + position.y * CHUNK_SIZE; 
 	}
-
 	constexpr glm::ivec2 indexToCoord(int index) const noexcept { 
 		return glm::ivec2(index % CHUNK_SIZE, index / CHUNK_SIZE);
 	}
@@ -38,14 +37,23 @@ public:
 	constexpr bool exists(int index) const noexcept {
 		return (index >= 0 && index < CHUNK_SIZE * CHUNK_SIZE);
 	}
-
 	constexpr bool exists(int x, int y) const noexcept {
 		return (x >= 0 && x < CHUNK_SIZE && y >= 0 && y < CHUNK_SIZE);
 	}
-
 	constexpr bool exists(const glm::ivec2& position) const noexcept {
 		return (position.x >= 0 && position.x < CHUNK_SIZE && 
 				position.y >= 0 && position.y < CHUNK_SIZE);
+	}
+
+	constexpr void setPosition(int x, int y) noexcept {
+		for(Uint32 i = 0; i < CHUNK_SIZE * CHUNK_SIZE; i++) {
+			tiles[i].setPosition(glm::ivec2(x, y) + Tile::size * indexToCoord(i));
+		}
+	}
+	constexpr void setPosition(const glm::ivec2& position) noexcept {
+		for(Uint32 i = 0; i < CHUNK_SIZE * CHUNK_SIZE; i++) {
+			tiles[i].setPosition(position + Tile::size * indexToCoord(i));
+		}	
 	}
 
 private:
