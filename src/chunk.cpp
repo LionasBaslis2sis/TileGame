@@ -15,6 +15,7 @@ Chunk::Chunk(int ID) noexcept : tiles(CHUNK_SIZE * CHUNK_SIZE, ID), render(true)
 }
 
 void Chunk::draw(SDL_Renderer *renderer) const noexcept {
+	if(!render) return;
 	for(auto& t : tiles) {
 		t.draw(renderer);
 	}

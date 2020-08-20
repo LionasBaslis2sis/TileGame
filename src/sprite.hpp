@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "vec2.hpp"
+#include "mat3.hpp"
 
 class Sprite {
 
