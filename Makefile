@@ -6,7 +6,7 @@ CPP = src/*.cpp
 
 CXX = g++
 
-CXXFLAGS = -std=c++20 -Wall
+CXXFLAGS = -std=c++20 -Wall -static-libgcc -static-libstdc++
 
 all:
 	@ $(CXX) $(CXXFLAGS) main.cpp $(CPP) -o main.exe $(INCS) $(LIBS)

@@ -22,7 +22,7 @@ public:
 	constexpr void translate(const glm::ivec2& displacement) noexcept {
 		transform.translation += displacement;
 	}
-
+	
 	constexpr const Transform& getTransform() const noexcept { return transform; }
 
 public:

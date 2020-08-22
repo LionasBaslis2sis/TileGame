@@ -29,6 +29,7 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	player.setSize(64, 64);
 
 	map = Tilemap(2, 2, 0);
+	//camera.setPosition(-128, -128);
 }
 
 void Game::run(float dt) noexcept {
@@ -40,21 +41,18 @@ void Game::run(float dt) noexcept {
 
 void Game::update(float dt) noexcept {
 	SDL_Event event;
+	const Input& input = Input::get();
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {
 			case SDL_QUIT: running = false; break; 
 		}
 	}
-	const Uint8 *keys = SDL_GetKeyboardState(NULL);
-	if(keys[SDLK_a]) player.move(-1, 0);
-	if(keys[SDLK_d]) player.move(1, 0);
-	if(keys[SDLK_w]) player.move(0, -1);
-	if(keys[SDLK_s]) player.move(0, 1);
+	Input::get().handleInput();
 }
 
 void Game::draw() const noexcept {
 	SDL_RenderClear(renderer);
-	map.draw(renderer, camera.getTransform());
-	player.draw(renderer, camera.getTransform());
+	map.draw(renderer, -camera.getTransform());
+	player.draw(renderer, -camera.getTransform());
     SDL_RenderPresent(renderer);
 }

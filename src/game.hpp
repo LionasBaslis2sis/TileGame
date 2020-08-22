@@ -6,6 +6,7 @@
 #include "assets.hpp"
 #include "camera.hpp"
 #include "tilemap.hpp"
+#include "input.hpp"
 
 class Game {
 
