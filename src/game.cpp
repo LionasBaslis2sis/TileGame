@@ -29,7 +29,6 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	player.setSize(64, 64);
 
 	map = Tilemap(2, 2, 0);
-	//camera.setPosition(-128, -128);
 }
 
 void Game::run(float dt) noexcept {
@@ -48,11 +47,29 @@ void Game::update(float dt) noexcept {
 		}
 	}
 	Input::get().handleInput();
+	// update camera
+	float speed = 0.1;
+	if(input.keyHeld(SDL_SCANCODE_A)) camera.move(-speed, 0);
+	if(input.keyHeld(SDL_SCANCODE_D)) camera.move(speed, 0);
+	if(input.keyHeld(SDL_SCANCODE_W)) camera.move(0, -speed);
+	if(input.keyHeld(SDL_SCANCODE_S)) camera.move(0, speed);
+	// edit the tile
+	if(input.mouseButtonPressed(SDL_BUTTON_RIGHT)) {
+		const glm::ivec2 pixel = camera.pixelToCoords(input.mousePosition());
+		glm::ivec2 reduced = pixel / Tile::size;
+		try {
+			map.setTile(reduced, 1);
+		} catch (const std::out_of_range& e) {
+			SDL_Log("%s", e.what());
+		}
+	}
 }
 
 void Game::draw() const noexcept {
 	SDL_RenderClear(renderer);
-	map.draw(renderer, -camera.getTransform());
-	player.draw(renderer, -camera.getTransform());
+	RenderStates states;
+	states.transform = -camera.getTransform();
+	map.draw(renderer, states);
+	player.draw(renderer, states);
     SDL_RenderPresent(renderer);
 }

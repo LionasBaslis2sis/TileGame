@@ -23,9 +23,9 @@ Chunk::Chunk(glm::ivec2& position, int ID) noexcept : tiles(CHUNK_SIZE * CHUNK_S
 	for(auto& t : tiles) t.setID(ID);
 }
 
-void Chunk::draw(SDL_Renderer *renderer, const Transform& transform) const noexcept {
+void Chunk::draw(SDL_Renderer *renderer, RenderStates states) const noexcept {
 	if(!render) return;
-	for(auto& t : tiles) t.draw(renderer, transform);
+	for(auto& t : tiles) t.draw(renderer, states);
 }
 
 Tile& Chunk::getTile(int x, int y) {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/vec2.hpp>
+#include <fstream>
 #include "util.hpp"
 
 class Assets {
@@ -20,6 +22,9 @@ public:
 
 public:
 
-	SDL_Texture *player, *grass_tile;
+	SDL_Texture *player, *tiles;
+	// tile_texture_size - size of the individual 
+	// tiles in pixels of the texture
+	glm::uvec2 tile_count, tile_texture_size;
 
 };

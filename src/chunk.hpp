@@ -17,7 +17,7 @@ public:
 	Chunk(int x, int y, int ID) noexcept;
 	Chunk(glm::ivec2& position, int ID) noexcept;
 
-	void draw(SDL_Renderer *renderer, const Transform& transform) const noexcept;
+	void draw(SDL_Renderer *renderer, RenderStates states) const noexcept;
 
 	Tile& getTile(int x, int y);
 	Tile& getTile(const glm::ivec2& position);

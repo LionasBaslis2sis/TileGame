@@ -5,11 +5,11 @@
 
 class Tile {
 public:
-	constexpr Tile() noexcept : ID(-1) { }
+	constexpr Tile() noexcept { setID(-1); }
 
 	Tile(int ID) noexcept;
 
-	void draw(SDL_Renderer* renderer, const Transform& transform) const noexcept;
+	void draw(SDL_Renderer* renderer, RenderStates states) const noexcept;
 
 	void setID(int ID) noexcept;
 
@@ -22,8 +22,9 @@ public:
 	}
 
 	int ID;
-	// this is bad, all the tile sprites should be stored
-	// in chunks to increase the performace
+	// this is bad, all the chunk tiles 
+	// should be rendered in one draw call
+	// and individual tiles should not hold a sprite obj
 	Sprite sprite;
 
 	// default size of tiles

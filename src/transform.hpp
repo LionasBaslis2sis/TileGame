@@ -11,8 +11,5 @@ struct Transform {
 		return result;
 	}
 
-	glm::ivec2 translation;
-	// experimental
-	//double angle;
-
+	glm::vec2 translation;
 };

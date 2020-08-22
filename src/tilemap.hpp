@@ -9,7 +9,7 @@ public:
 	Tilemap() noexcept;
 	Tilemap(Uint32 width, Uint32 height, int ID) noexcept;
 
-	void draw(SDL_Renderer *renderer, const Transform& transform) const noexcept;
+	void draw(SDL_Renderer *renderer, RenderStates states) const noexcept;
 
 	void setTile(Uint32 x, Uint32 y, int ID);
 	void setTile(const glm::ivec2& position, int ID);

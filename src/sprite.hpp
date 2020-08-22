@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <glm/vec2.hpp>
 
-#include "transform.hpp"
+#include "render_states.hpp"
 
 class Sprite {
 
@@ -16,7 +16,7 @@ public:
 
 	Sprite(SDL_Texture *texture) noexcept;
 
-	void draw(SDL_Renderer *renderer, const Transform& transform) const noexcept;
+	void draw(SDL_Renderer *renderer, RenderStates states) const noexcept;
 
 	constexpr void setRect(int x, int y, int w, int h) noexcept {
 		sprite_rect = {x, y, w, h};
