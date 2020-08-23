@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <glm/vec2.hpp>
 #include <cstring>
 
 class Input {

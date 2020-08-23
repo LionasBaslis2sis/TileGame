@@ -17,6 +17,7 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	if(!window) {
 		SDL_Log("Failed to create SDL_Window, error: %s", SDL_GetError());
 	}
+	SDL_GetWindowSize(window, &window_size.x, &window_size.y);
 	running = true;
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	if(!renderer) {
@@ -25,17 +26,8 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	// call init functions
 	Assets::get().init(renderer);
 	// game objects
-	player = Sprite(Assets::get().player);
-	player.setSize(64, 64);
-
+	player = Player({0, 0});
 	map = Tilemap(2, 2, 0);
-}
-
-void Game::run(float dt) noexcept {
-	while(running) {
-		this->update(dt);
-		this->draw();
-	}
 }
 
 void Game::update(float dt) noexcept {
@@ -47,12 +39,8 @@ void Game::update(float dt) noexcept {
 		}
 	}
 	Input::get().handleInput();
-	// update camera
-	float speed = 0.1;
-	if(input.keyHeld(SDL_SCANCODE_A)) camera.move(-speed, 0);
-	if(input.keyHeld(SDL_SCANCODE_D)) camera.move(speed, 0);
-	if(input.keyHeld(SDL_SCANCODE_W)) camera.move(0, -speed);
-	if(input.keyHeld(SDL_SCANCODE_S)) camera.move(0, speed);
+	player.update(map, dt);
+	camera.setPosition(player.position + Player::size / 2.0f - (glm::vec2)window_size / 2.0f);
 	// edit the tile
 	if(input.mouseButtonPressed(SDL_BUTTON_RIGHT)) {
 		const glm::ivec2 pixel = camera.pixelToCoords(input.mousePosition());

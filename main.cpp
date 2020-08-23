@@ -16,7 +16,15 @@ int main(int argc, char** argv) {
     }
     
     Game* game = new Game("Tile Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 768, 512);
-    game->run(.0f);
+    Uint32 last_time = 0, current_time = 0;
+    while(game->running) {
+        last_time = current_time;
+        current_time = SDL_GetTicks();
+        float delta = (current_time - last_time) / 1000.0f;
+        game->update(delta);
+        game->draw();
+    }
+
     delete game;
 
     SDL_Quit();
