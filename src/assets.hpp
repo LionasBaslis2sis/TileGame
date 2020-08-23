@@ -22,7 +22,7 @@ public:
 
 public:
 
-	SDL_Texture *player, *tiles;
+	SDL_Texture *player, *tiles, *player_sheet;
 	// tile_texture_size - size of the individual 
 	// tiles in pixels of the texture
 	glm::uvec2 tile_count, tile_texture_size;

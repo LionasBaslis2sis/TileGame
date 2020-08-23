@@ -1,7 +1,8 @@
 #include "player.hpp"
 
 Player::Player(const glm::ivec2& position) noexcept : position(position), velocity(0, 0) {
-	sprite = Sprite(Assets::get().player);
+	sprite = Sprite(Assets::get().player_sheet);
+	animation = Animation(&sprite, {4, 1});
 	sprite.setSize(size);
 	loadSettings("config/player.config");
 }
@@ -22,6 +23,7 @@ void Player::handleCollisions(const Tilemap& map) noexcept {
 
 void Player::update(const Tilemap& map, float dt) noexcept {
 	handleInput(dt);
+	animation.play(sprite, 0, 500, dt);
 	handleCollisions(map);
 	sprite.setPosition(position);
 }

@@ -7,6 +7,7 @@ Assets::~Assets() {
 void Assets::cleanup() noexcept {
 	// free all SDL_Texture objects
 	SDL_DestroyTexture(player);
+	SDL_DestroyTexture(player_sheet);
 	SDL_DestroyTexture(tiles);
 	SDL_Log("Assets destructed\n");
 }
@@ -14,8 +15,9 @@ void Assets::cleanup() noexcept {
 void Assets::init(SDL_Renderer* renderer) noexcept {
 	// load all SDL_Texture objects
 	player = loadTexture(renderer, "res/player.png");
+	player_sheet = loadTexture(renderer, "res/player_sheet.png");
 	tiles = loadTexture(renderer, "res/tiles.png");
-	std::ifstream tile_info("res/tiles.config", std::ios::binary);
+	std::ifstream tile_info("config/tiles.config", std::ios::binary);
 	if(tile_info.is_open()) {
 		tile_info >> tile_count.x >> tile_count.y;
 		tile_info >> tile_texture_size.x >> tile_texture_size.y;

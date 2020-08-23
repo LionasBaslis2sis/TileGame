@@ -5,6 +5,7 @@
 #include "assets.hpp"
 #include "sprite.hpp"
 #include "tilemap.hpp"
+#include "animation.hpp"
 
 class Player {
 public:
@@ -24,4 +25,5 @@ public:
 	glm::vec2 position, velocity;
 	float speed;
 	Sprite sprite;
+	Animation animation;
 };

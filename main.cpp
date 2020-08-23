@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     while(game->running) {
         last_time = current_time;
         current_time = SDL_GetTicks();
-        float delta = (current_time - last_time) / 1000.0f;
+        float delta = current_time - last_time;
         game->update(delta);
         game->draw();
     }
