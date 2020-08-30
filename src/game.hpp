@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstdio> // printf
+#include <glm/exponential.hpp>
+#include <glm/geometric.hpp>
 
 #include "util.hpp"
 #include "assets.hpp"
@@ -30,4 +32,9 @@ public:
 	Player player;
 	Camera camera;
 	Tilemap map;
+
+	float t;
+	SDL_Rect rect;
+	glm::vec2 cn, cp;
+	bool inter;
 };

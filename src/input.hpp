@@ -53,7 +53,7 @@ public:
 	constexpr glm::ivec2 mousePosition() const noexcept {
 		return mouse;
 	}
-
+	
 	constexpr bool mouseButtonHeld(const Uint32 mouse_button) const noexcept {
 		return current_mouse_mask & SDL_BUTTON(mouse_button);
 	}

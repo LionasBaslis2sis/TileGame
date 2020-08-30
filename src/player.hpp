@@ -13,7 +13,7 @@ public:
 	Player(const glm::ivec2& position) noexcept;
 
 	void handleInput(float dt) noexcept;
-	void handleCollisions(const Tilemap& map) noexcept;
+	void handleCollisions(const Tilemap& map, float dt) noexcept;
 	void update(const Tilemap& map, float dt) noexcept;
 
 	void draw(SDL_Renderer* renderer, RenderStates states) const noexcept;
@@ -21,7 +21,7 @@ public:
 	void loadSettings(const char* path) noexcept;
 
 public:
-	static constexpr glm::vec2 size = glm::vec2(32, 32);
+	static constexpr glm::vec2 size = glm::vec2(48, 48);
 	glm::vec2 position, velocity;
 	float speed;
 	Sprite sprite;

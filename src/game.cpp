@@ -28,6 +28,8 @@ Game::Game(const char* title, Uint32 x, Uint32 y, Uint32 w, Uint32 h) noexcept {
 	// game objects
 	player = Player({0, 0});
 	map = Tilemap(2, 2, 0);
+
+	rect = {200, 300, 250, 150};
 }
 
 void Game::update(float dt) noexcept {
@@ -54,6 +56,7 @@ void Game::update(float dt) noexcept {
 }
 
 void Game::draw() const noexcept {
+	
 	SDL_RenderClear(renderer);
 	RenderStates states;
 	states.transform = -camera.getTransform();

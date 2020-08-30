@@ -19,8 +19,8 @@ public:
 
 	void draw(SDL_Renderer *renderer, RenderStates states) const noexcept;
 
-	Tile& getTile(int x, int y);
-	Tile& getTile(const glm::ivec2& position);
+	Tile getTile(int x, int y) const;
+	Tile getTile(const glm::ivec2& position) const;
 
 	void setTile(int x, int y, int ID);
 	void setTile(const glm::ivec2& position, int ID);

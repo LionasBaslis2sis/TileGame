@@ -40,7 +40,11 @@ void Tilemap::setTile(const glm::ivec2& position, int ID) {
 }
 
 
-Tile& Tilemap::getTile(Uint32 x, Uint32 y) {
+Tile Tilemap::getTile(int index) const {
+	return getTile(indexToCoord(index));
+}
+
+Tile Tilemap::getTile(Uint32 x, Uint32 y) const {
 	// get local chunk coords
 	Uint32 local_x = x % CHUNK_SIZE;
 	Uint32 local_y = y % CHUNK_SIZE;
@@ -55,19 +59,9 @@ Tile& Tilemap::getTile(Uint32 x, Uint32 y) {
 	return chunks[coordToIndex(chunk_x, chunk_y)].getTile(local_x, local_y);
 }
 
-Tile& Tilemap::getTile(const glm::ivec2& position) {
-	return getTile(position.x, position.y);
-}
-
-
-Tile Tilemap::getTile(Uint32 x, Uint32 y) const {
-	return getTile(x, y);
-}
-
 Tile Tilemap::getTile(const glm::ivec2& position) const {
 	return getTile(position.x, position.y);
 }
-
 
 Uint32 Tilemap::coordToIndex(Uint32 x, Uint32 y) const noexcept {
 	return x + y * size.x;
@@ -89,4 +83,12 @@ bool Tilemap::exists(Uint32 x, Uint32 y) const noexcept {
 
 bool Tilemap::exists(const glm::uvec2& position) const noexcept {
 	return (position.x < size.x && position.y < size.y);
+}
+
+bool Tilemap::existsTile(Uint32 x, Uint32 y) const noexcept {
+	return (x < size.x * CHUNK_SIZE && y < size.y * CHUNK_SIZE);
+}
+
+bool Tilemap::existsTile(const glm::uvec2& position) const noexcept {
+	return (position.x < size.x * CHUNK_SIZE && position.y < size.y * CHUNK_SIZE);
 }

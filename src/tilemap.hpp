@@ -14,9 +14,7 @@ public:
 	void setTile(Uint32 x, Uint32 y, int ID);
 	void setTile(const glm::ivec2& position, int ID);
 	
-	Tile& getTile(Uint32 x, Uint32 y);
-	Tile& getTile(const glm::ivec2& position);
-
+	Tile getTile(int index) const;
 	Tile getTile(Uint32 x, Uint32 y) const;
 	Tile getTile(const glm::ivec2& position) const;
 
@@ -27,6 +25,9 @@ public:
 
 	bool exists(Uint32 x, Uint32 y) const noexcept;
 	bool exists(const glm::uvec2& position) const noexcept;
+
+	bool existsTile(Uint32 x, Uint32 y) const noexcept;
+	bool existsTile(const glm::uvec2& position) const noexcept;
 
 public:
 	std::vector<Chunk> chunks;

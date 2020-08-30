@@ -28,12 +28,12 @@ void Chunk::draw(SDL_Renderer *renderer, RenderStates states) const noexcept {
 	for(auto& t : tiles) t.draw(renderer, states);
 }
 
-Tile& Chunk::getTile(int x, int y) {
+Tile Chunk::getTile(int x, int y) const {
 	checkTile(x, y);
 	return tiles[coordToIndex(x, y)];
 }
 
-Tile& Chunk::getTile(const glm::ivec2& position) {
+Tile Chunk::getTile(const glm::ivec2& position) const {
 	checkTile(position.x, position.y);
 	return tiles[coordToIndex(position)];
 }
